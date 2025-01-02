@@ -1,9 +1,9 @@
-########################################################################################################################
+################################################################################
 ## BLOG OF JUAN IRIGOYEN
 ## (1) DATA RETRIEVAL
 ## R script written by Jose Luis Estevez (University of Helsinki)
 ## Date: Jan 1st, 2025
-########################################################################################################################
+################################################################################
 
 # R PACKAGES REQUIRED
 library(tidyverse);library(rvest);library(lubridate);library(stringr)
@@ -11,62 +11,44 @@ library(tidyverse);library(rvest);library(lubridate);library(stringr)
 # Clean the environment
 rm(list=ls())
 
-########################################################################################################################
+################################################################################
 
 # RETRIEVE ALL URLS FROM THE BLOG WEBSITE ----
 
-# Step 1: Collect all monthly archive URLs from the main page
+# Step 1: Define the main page URL
 main_url <- "http://www.juanirigoyen.es/"
-main_page <- read_html(main_url)
-
-# Extract monthly archive URLs
-archive_links <- main_page %>%
-  html_elements("a") %>%        # Extract all <a> elements
-  html_attr("href") %>%         # Get the href attribute (URL)
-  unique()                      # Remove duplicates
-
-# Filter to only include monthly archives (e.g., "YYYY/MM/")
-monthly_links <- archive_links[grepl("\\d{4}/\\d{2}/$", archive_links)]
-
-# Step 2: Collect all individual post URLs from each monthly archive, with pagination
 all_post_links <- c()
 
-for (monthly_link in monthly_links) {
-  current_page <- monthly_link
-  while (!is.null(current_page)) {
-    # Read the current monthly archive page
-    archive_page <- read_html(current_page)
-    
-    # Extract links to individual posts
-    post_links <- archive_page %>%
-      html_elements("a") %>%
-      html_attr("href") %>%
-      unique()
-    
-    # Filter links to include only individual posts (e.g., "YYYY/MM/post-title")
-    filtered_posts <- post_links[grepl("\\d{4}/\\d{2}/.+", post_links)]
-    all_post_links <- c(all_post_links, filtered_posts)
-    
-    # Find the "Next" button and update current_page
-    next_button <- archive_page %>%
-      html_element(".blog-pager-older-link") %>% # Adjust to the correct class for "Next" button
-      html_attr("href")
-    
-    # If there's no "Next" button, stop pagination
-    current_page <- next_button
-  }
+# Step 2: Start scraping from the main page and follow pagination
+current_page <- main_url
+while (!is.null(current_page)) {
+  # Read the current page
+  page <- read_html(current_page)
+  # Extract links to individual posts
+  post_links <- page %>%
+    html_elements("a") %>%
+    html_attr("href") %>%
+    unique()
+  # Filter links to include only individual posts (e.g., "YYYY/MM/post-title")
+  filtered_posts <- post_links[grepl("\\d{4}/\\d{2}/.+", post_links)]
+  all_post_links <- c(all_post_links, filtered_posts)
+  # Find the "Older Posts" (pagination) button and update current_page
+  next_button <- page %>%
+    html_element(".blog-pager-older-link") %>% # Adjust to the correct class for "Older Posts"
+    html_attr("href")
+  # If there's no "Older Posts" button, stop pagination
+  current_page <- next_button
 }
-
 # Remove duplicate links
 all_post_links <- unique(all_post_links)
 
-# Step 3: Filter URLs with specific characters
+# Step 3: Filter URLs with specific conditions
 # Include only URLs that contain the keyword "juanirigoyen"
 urls <- all_post_links[grepl("juanirigoyen", all_post_links, ignore.case = TRUE)]
-# Exclude if mailto
+# Exclude mailto links
 urls <- urls[!grepl("mailto", urls, ignore.case = TRUE)]
 
-########################################################################################################################
+################################################################################
 
 # DATA SCRAPING ----
 
@@ -92,7 +74,7 @@ extraction <- function(page){
 # Apply function
 data <- lapply(pages,extraction)
 
-########################################################################################################################
+################################################################################
 
 # USE R READABLE DATES ----
 
@@ -123,7 +105,7 @@ post_dates <- as.Date(unlist(post_dates), origin = "1970-01-01")
 
 # Replace values
 for(i in seq_along(data)){
-  data[[i]]$date <- post_dates[i]
+  data[[i]]$date <- as.character(post_dates)[i]
 }
 
 # Finally, let's order the entries by date
@@ -131,7 +113,15 @@ data <- data[order(post_dates)]
 # Optional: title each entry with the date as well
 names(data) <- post_dates[order(post_dates)] 
 
-########################################################################################################################
+################################################################################
+
+# Export as txt files
+for(i in seq_along(data)){
+  title <- paste('post ',i,' (',names(data)[[i]],').txt',sep='')
+  writeLines(unlist(data[[i]]),title)
+}
+
+################################################################################
 
 # Remove unnecessary objects
 rm(list=setdiff(ls(),c('all_post_links','data')))
@@ -139,4 +129,4 @@ rm(list=setdiff(ls(),c('all_post_links','data')))
 # Save image
 save.image('Irigoyen_blog.RData')
 
-########################################################################################################################
+################################################################################
