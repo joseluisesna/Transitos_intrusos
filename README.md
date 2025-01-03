@@ -10,7 +10,7 @@ Este archivo contiene 802 textos en formato .txt, correspondientes a las 802 ent
 
 Ocasionalmente, Juan Irigoyen incluye imágenes y vídeos en sus publicaciones.
 - Los enlaces a vídeos han sido incluidos al final de cada texto y, si continúan activos, pueden ser accedidos utilizando un navegador.
-- Todas las imágenes han sido almacenadas en subcarpetas, indicando el post al que corresponden. Para la fecha de la extracción (3 de enero de 2025), no obstante, algunas imágenes se encontraban inaccesibles, como se indica más abajo.
+- Del mismo modo, los enlaces a imágenes también se indican al final de cada texto. En este caso, las imágenes han sido almacenadas en subcarpetas, indicando el post al que corresponden. Para la fecha de la extracción (3 de enero de 2025), no obstante, algunas imágenes se encontraban inaccesibles, como se indica más abajo.
 
 ```
 Warning messages:
