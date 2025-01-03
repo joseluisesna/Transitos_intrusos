@@ -7,3 +7,6 @@ Dado el desconcierto existente acerca de la posibilidad de que su blog, ["Tráns
 Este [enlace](https://github.com/joseluisesna/Transitos_intrusos/blob/main/1_Data_retrieval.R) conduce al código utilizado para realizar el "data scraping".
 El blog mismo puede ser decargardo directamente aquí: [transitos.intrusos.7z ](https://github.com/joseluisesna/Transitos_intrusos/blob/main/transitos_intrusos.7z).
 Este archivo contiene 802 textos en formato .txt, correspondientes a las 802 entradas que Juan Irigoyen realizó desde diciembre de 2012 hasta mayo de 2024, organizadas cronológicamente.
+
+Ocasionalmente, Juan Irigoyen incluye imágenes y vídeos en sus publicaciones. Todas las imágenes han sido almacenadas en subcarpetas, indicando el post al que corresponden.
+Los enlaces a vídeos han sido incluidos al final de cada texto y, si continúan activos, pueden ser accedidos utilizando un navegador.
