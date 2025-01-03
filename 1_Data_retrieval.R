@@ -139,6 +139,11 @@ for (i in 1:nrow(data_frame)) {
     paste("Título:", data_frame$title[i]),
     paste("Fecha:", data_frame$date[i]),
     paste("Contenido:", data_frame$text[i]),
+    if (data_frame$images[i] != "") {
+      paste("\nImágenes:\n", paste(data_frame$images[i], collapse = "\n"))
+    } else {
+      ""
+    },
     if (data_frame$videos[i] != "") {
       paste("\nVídeos:\n", paste(data_frame$videos[i], collapse = "\n"))
     } else {
