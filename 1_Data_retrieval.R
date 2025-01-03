@@ -112,7 +112,7 @@ row.names(data_frame) <- 1:nrow(data_frame)
 data_frame$date <- as.character(data_frame$date)
 
 # Remove unnecessary objects
-rm(list=setdiff(ls(),c('data_frame')))
+rm(list=setdiff(ls(),c('pages','data_frame')))
 
 # Save image
 save.image('Irigoyen_blog.RData')
