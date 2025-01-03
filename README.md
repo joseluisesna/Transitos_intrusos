@@ -1,4 +1,4 @@
-# Tránsitos Intrusos, el blog de Juan Irigoyen
+# "Tránsitos Intrusos", el blog de Juan Irigoyen
 
 A comienzos de septiembre de 2024, Juan Gervás hizo oficial el [fallecimiento del sociólogo Juan Irigoyen](https://diario16plus.com/sociedad/obituario/murio-juan-irigoyen-profesor-sociologo-marginado-academico-social-bella-persona-mejor-sociologia-salud_501587_102.html), acontecido el 31 de mayo del mismo año.
 
