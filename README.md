@@ -5,7 +5,7 @@ A comienzos de septiembre de 2024, Juan Gervás hizo oficial el [fallecimiento d
 Dado el desconcierto existente acerca de la posibilidad de que su blog, ["Tránsitos Intrusos"](http://www.juanirigoyen.es/), pueda desaparecer de la red, he extraído todas las publicaciones y las he almacenado en este repositorio para garantizar su futura preservación.
 
 Este [enlace](https://github.com/joseluisesna/Transitos_intrusos/blob/main/1_Data_retrieval.R) conduce al código utilizado para realizar el "data scraping".
-El blog mismo puede ser descargardo directamente aquí: [transitos.intrusos.7z ](https://github.com/joseluisesna/Transitos_intrusos/blob/main/exported_posts.7z).
+El blog mismo puede ser descargardo directamente aquí: [exported_posts.7z ](https://github.com/joseluisesna/Transitos_intrusos/blob/main/exported_posts.7z).
 Este archivo contiene 802 textos en formato .txt, correspondientes a las 802 entradas que Juan Irigoyen realizó desde diciembre de 2012 hasta mayo de 2024, organizadas cronológicamente.
 
 Ocasionalmente, Juan Irigoyen incluye imágenes y vídeos en sus publicaciones.
